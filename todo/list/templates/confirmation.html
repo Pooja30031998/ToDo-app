@@ -1,0 +1,21 @@
+{% extends 'layout.html' %} {% block title %}
+<title>Confirmation Page</title>
+{% endblock %} {% block content %}
+<div class="container">
+  <form class="jumbotron" method="post">
+    {% csrf_token %}
+    <h2>
+      Are you sure you want to delete
+      <span class="text-danger">{{obj.title}}</span>?
+    </h2>
+    <input type="submit" value="YES" class="btn btn-danger" />
+    <button class="btn btn-success">
+      <a
+        class="link-offset-2 link-underline link-underline-opacity-0 text-light"
+        href="{% url 'show_url' %}"
+        >NO</a
+      >
+    </button>
+  </form>
+</div>
+{% endblock %}

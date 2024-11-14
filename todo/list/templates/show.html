@@ -1,0 +1,44 @@
+{% extends 'layout.html' %} {% block title %}
+<title>Show Todo</title>
+{% endblock %} {% block content %}
+<div class="container">
+  <h1 class="text-center mt-3 mb-3">Show Todo</h1>
+  <table class="table table-dark table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Created at</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in obj %}
+      <tr>
+        <td>{{item.task}}</td>
+        <td>{{item.created_at}}</td>
+        <td>
+          {% if item.completed %} Completed {% else %} Not Completed {% endif %}
+        </td>
+        <td>
+          <button class="btn btn-warning">
+            <a
+              class="link-offset-2 link-underline link-underline-opacity-0 text-dark"
+              href="{% url 'update_url' item.id %}"
+              >Update</a
+            ></button
+          >&nbsp;&nbsp;
+          <button class="btn btn-danger">
+            <a
+              class="link-offset-2 link-underline link-underline-opacity-0 text-light"
+              href="{% url 'delete_url' item.id %}"
+              >Delete</a
+            >
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
